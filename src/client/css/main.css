@@ -1,51 +1,17 @@
 /* Reset */
-html,
-body,
-div {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/* Box-sizing border-box */
-* {
-  box-sizing: border-box;
-}
-
-/* Set up a default font and some padding to provide breathing room */
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #e0e0e0;
+  font-family: 'Roboto', sans-serif;
 }
-
-p {
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 20px;
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
-ul {
-  margin: 10px 0 0;
-  padding: 0 0 0 20px;
-}
-
-li {
-  font-weight: 400;
-  margin-top: 4px;
-}
-
 input {
-  border: 1px solid #106cc8;
   font-size: 14px;
-  height: 40px;
   outline: none;
   padding: 8px;
 }
-
+input:focus {
+  transition: border .5s;
+  border: 1px  solid #106cc8;
+}
 button {
   background-color: #106cc8;
   border-style: none;
@@ -60,4 +26,27 @@ button {
 
 button:hover {
   background-color: #28739e;
+}
+/* Bootstrap4  custom select*/
+select {
+  display: inline-block;
+  max-width: 100%;
+  padding: .375rem 1.75rem .375rem .75rem;
+  padding-right: .75rem\9;
+  color: #55595c;
+  vertical-align: middle;
+  background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+  background-image: none\9;
+  -webkit-background-size: 8px 10px;
+  background-size: 8px 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.loading-message {
+  margin: 3em auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em; 
 }

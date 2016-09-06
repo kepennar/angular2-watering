@@ -314,7 +314,8 @@ export class SeedConfig {
     packageConfigPaths: [
       `/node_modules/*/package.json`,
       `/node_modules/**/package.json`,
-      `/node_modules/@angular/*/package.json`
+      `/node_modules/@ngrx/*/package.json`,
+      `/node_modules/@angular/*/package.json`,
     ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
@@ -337,6 +338,8 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
+      '@ngrx/core': 'node_modules/@ngrx/core/index.js',
+      '@ngrx/store': 'node_modules/@ngrx/store/index.js',
       'rxjs/*': 'node_modules/rxjs/*',
       'app/*': '/app/*',
       // For test config
@@ -363,6 +366,7 @@ export class SeedConfig {
     defaultJSExtensions: true,
     packageConfigPaths: [
       join(this.PROJECT_ROOT, 'node_modules', '*', 'package.json'),
+      join(this.PROJECT_ROOT, 'node_modules', '@ngrx', '*', 'package.json'),
       join(this.PROJECT_ROOT, 'node_modules', '@angular', '*', 'package.json')
     ],
     paths: {
@@ -403,6 +407,14 @@ export class SeedConfig {
         defaultExtension: 'js'
       },
       '@angular/router': {
+        main: 'index.js',
+        defaultExtension: 'js'
+      },
+      '@ngrx/core': {
+        main: 'index.js',
+        defaultExtension: 'js'
+      },
+      '@ngrx/store': {
         main: 'index.js',
         defaultExtension: 'js'
       },

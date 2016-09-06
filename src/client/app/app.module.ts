@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+
+import { Store, StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers/index';
+
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
@@ -11,7 +15,15 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, RouterModule.forRoot(routes), AboutModule, HomeModule, SharedModule.forRoot()],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(routes),
+    StoreModule.provideStore(reducers),
+    AboutModule,
+    HomeModule,
+    SharedModule.forRoot(),
+  ],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
@@ -20,5 +32,4 @@ import { SharedModule } from './shared/shared.module';
   bootstrap: [AppComponent]
 
 })
-
 export class AppModule { }
