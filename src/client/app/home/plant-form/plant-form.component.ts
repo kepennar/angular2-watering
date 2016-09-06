@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { v4 } from 'node-uuid';
 
-import { AppState, Plant, ADD_PLANT } from '../../store/reducers/index';
+import { AppState, Plant } from '../../store/reducers/index';
+import { PlantActions } from '../../store/actions/index';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -17,7 +20,7 @@ import { AppState, Plant, ADD_PLANT } from '../../store/reducers/index';
           <input [(ngModel)]="newPlant" name="newPlant" placeholder="Your plant name">
         </label>
         <label>
-          Watering frequency:
+          Watering frequency (per week):
           <select [(ngModel)]="watterFrequency" name="watterFrequency" >
             <option *ngFor="let freq of watterFrequencies" [value]="freq">{{freq}}</option>
           </select>
@@ -33,14 +36,18 @@ export class PlantFormComponent {
   newPlant: string = '';
   watterFrequency: number = 10;
 
-  constructor(public store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private plantActions: PlantActions
+  ) {
   }
   addPlant(): boolean {
     const newPlant: Plant = {
+      id: v4(),
       name: this.newPlant,
       watterFrequency: this.watterFrequency
     };
-    this.store.dispatch({ type: ADD_PLANT, payload: newPlant });
+    this.store.dispatch(this.plantActions.add(newPlant));
     this.newPlant = '';
     return false;
   }

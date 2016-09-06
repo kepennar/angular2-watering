@@ -1,14 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import {
-  TableOptions,
-  TableColumn,
-  ColumnMode,
-  SelectionType
-} from 'angular2-data-table';
+import { Component } from '@angular/core';
 
-import { AppState, Plant, ADD_PLANT } from '../store/reducers/index';
 /**
  * This class represents the lazy loaded HomeComponent.
  */

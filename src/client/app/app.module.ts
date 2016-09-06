@@ -4,9 +4,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
+// import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers/index';
-
+// import { Effects } from './store/effects/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     RouterModule.forRoot(routes),
     StoreModule.provideStore(reducers),
+    // EffectsModule.run(Effects),
     AboutModule,
     HomeModule,
     SharedModule.forRoot(),
@@ -27,7 +29,7 @@ import { SharedModule } from './shared/shared.module';
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,
-    useValue: '<%= APP_BASE %>'
+    useValue: '<%= APP_BASE %>',
   }],
   bootstrap: [AppComponent]
 

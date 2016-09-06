@@ -14,12 +14,11 @@ import { Component, AfterViewInit } from '@angular/core';
   `,
   styleUrls: ['toolbar.component.css']
 })
-
 export class ToolbarComponent implements AfterViewInit {
-  gramin: any;
+  granim: any;
 
   ngAfterViewInit() {
-    this.gramin = new Granim({
+    this.granim = new Granim({
       element: '#granim-canvas',
       name: 'basic-gradient',
       direction: 'left-right',
@@ -30,7 +29,8 @@ export class ToolbarComponent implements AfterViewInit {
           gradients: [
             ['#485563', '#6db33f', '#29323c'],
             ['#00c6ff', '#106cc8', '#106cc8'] //#6db33f
-          ]
+          ],
+          transitionSpeed: 2500,
         }
       }
     });

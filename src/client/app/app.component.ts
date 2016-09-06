@@ -8,7 +8,13 @@ import { Config} from './shared/index';
 @Component({
   moduleId: module.id,
   selector: 'sd-app',
-  templateUrl: 'app.component.html',
+  template: `
+    <sd-toolbar></sd-toolbar>
+    <sd-navbar></sd-navbar>
+    <div class="view-container">
+      <router-outlet></router-outlet>
+    </div>
+   `,
 })
 
 export class AppComponent {

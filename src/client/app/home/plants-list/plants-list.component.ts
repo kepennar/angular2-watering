@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
+// import { StateUpdates, Effect } from '@ngrx/effects';
+
 import {
   TableOptions,
   TableColumn,
@@ -22,11 +24,17 @@ import { AppState, Plant } from '../../store/reducers/index';
       [selected]='selection'
       (onSelectionChange)='onSelectionChange($event)'
       [options]='options'>
+      <datatable-column name="">
+        <template let-row="row" let-value="value">
+          <button (click)="watering($event, value)" style="float: right">Water</button>
+        </template>
+      </datatable-column>
     </datatable>
-  `,
+  `
 })
 export class PlantsListComponent {
-   options = new TableOptions({
+
+  options = new TableOptions({
     columnMode: ColumnMode.force,
     selectionType: SelectionType.single,
     headerHeight: 50,
@@ -34,7 +42,8 @@ export class PlantsListComponent {
     rowHeight: 'auto',
     columns: [
       new TableColumn({ name: 'Name', prop: 'name' }),
-      new TableColumn({ name: 'Frequency', prop: 'watterFrequency' })
+      new TableColumn({ name: 'Frequency (per week)', prop: 'watterFrequency' }),
+      new TableColumn({ name: 'last water', prop: 'last' }),
     ]
   });
   selection;
@@ -47,5 +56,10 @@ export class PlantsListComponent {
 
   onSelectionChange(selected) {
     console.log('Selection!', selected);
+  }
+  watering(event, value) {
+    event.preventDefault();
+    console.log('watering', value);
+    return false;
   }
 }

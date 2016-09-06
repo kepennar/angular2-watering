@@ -1,7 +1,11 @@
 /* Reset */
 body {
-  background-color: #e0e0e0;
+  background-color: #f2f2f2;
   font-family: 'Roboto', sans-serif;
+}
+.view-container {
+  max-width: 1400px;
+  margin: auto;
 }
 input {
   font-size: 14px;
