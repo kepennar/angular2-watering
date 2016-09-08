@@ -1,4 +1,4 @@
-export * from './plants';
+export * from './plants/index';
 import { PlantsState, plantsReducer } from './plants/index';
 
 export const reducers = {

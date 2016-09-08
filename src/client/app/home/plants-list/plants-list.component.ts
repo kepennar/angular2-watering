@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-// import { StateUpdates, Effect } from '@ngrx/effects';
 
 import {
   TableOptions,
   TableColumn,
   ColumnMode,
-  SelectionType
 } from 'angular2-data-table';
+import { Plant } from '../../model/Plant';
+import { AppState } from '../../store/reducers/index';
+import { PlantActions } from '../../store/actions/index';
 
-import { AppState, Plant } from '../../store/reducers/index';
-/**
- * This class represents the lazy loaded HomeComponent.
- */
 @Component({
   moduleId: module.id,
   selector: 'sd-plants-list',
@@ -21,8 +18,6 @@ import { AppState, Plant } from '../../store/reducers/index';
     <datatable
       class='material striped'
       [rows]='plants | async'
-      [selected]='selection'
-      (onSelectionChange)='onSelectionChange($event)'
       [options]='options'>
       <datatable-column name="">
         <template let-row="row" let-value="value">
@@ -36,30 +31,28 @@ export class PlantsListComponent {
 
   options = new TableOptions({
     columnMode: ColumnMode.force,
-    selectionType: SelectionType.single,
     headerHeight: 50,
     footerHeight: 50,
     rowHeight: 'auto',
     columns: [
       new TableColumn({ name: 'Name', prop: 'name' }),
       new TableColumn({ name: 'Frequency (per week)', prop: 'watterFrequency' }),
-      new TableColumn({ name: 'last water', prop: 'last' }),
+      new TableColumn({ name: 'Last water', prop: 'last' }),
     ]
   });
-  selection;
 
   plants: Observable<Plant[]>;
 
-  constructor(public store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private plantActions: PlantActions
+    ) {
     this.plants = store.select('plants');
   }
 
-  onSelectionChange(selected) {
-    console.log('Selection!', selected);
-  }
-  watering(event, value) {
+  watering(event: Event, value: Plant) {
     event.preventDefault();
-    console.log('watering', value);
+    this.store.dispatch(this.plantActions.watering(value.id));
     return false;
   }
 }

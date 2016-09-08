@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Plant } from '../../reducers';
+import { Plant } from '../../../model/Plant';
 
 @Injectable()
 export class PlantActions {
@@ -11,10 +11,14 @@ export class PlantActions {
     };
   }
 
-  static UPDATE = '[PLANT] UPDATE';
-  update(newPlants: Plant[]): Action {
+  static WATERING = '[PLANT] WATERING';
+  watering(plantId: string): Action {
+    const payload = {
+      plantId,
+      date: new Date().toDateString()
+    };
     return {
-      type: PlantActions.UPDATE, payload: newPlants
+      type: PlantActions.WATERING, payload
     };
   }
 }

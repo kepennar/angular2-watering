@@ -28,7 +28,7 @@ export class ToolbarComponent implements AfterViewInit {
         'default-state': {
           gradients: [
             ['#485563', '#6db33f', '#29323c'],
-            ['#00c6ff', '#106cc8', '#106cc8'] //#6db33f
+            ['#00c6ff', '#106cc8', '#106cc8']
           ],
           transitionSpeed: 2500,
         }

@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { v4 } from 'node-uuid';
 
-import { AppState, Plant } from '../../store/reducers/index';
+import { Plant } from '../../model/Plant';
+import { AppState} from '../../store/reducers/index';
 import { PlantActions } from '../../store/actions/index';
 
-/**
- * This class represents the lazy loaded HomeComponent.
- */
 @Component({
   moduleId: module.id,
   selector: 'sd-plant-form',

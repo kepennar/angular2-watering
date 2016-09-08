@@ -1,12 +1,7 @@
 import { ActionReducer, Action } from '@ngrx/store';
+import { Plant } from '../../../model/Plant';
 import { PlantActions } from '../../actions/index';
 
-export interface Plant {
-  id: string;
-  name: string;
-  last?: Date;
-  watterFrequency: number;
-}
 export interface PlantsState {
   [index: number]: Plant;
 }
@@ -20,9 +15,14 @@ export const plantsReducer: ActionReducer<Plant[]> = (state: Plant[] = initState
   switch (action.type) {
     case PlantActions.ADD:
       return [...state, action.payload];
-    case PlantActions.UPDATE:
+    case PlantActions.WATERING:
+      const { plantId, date } = action.payload;
+      const updatedPlant = state.find(p => p.id === plantId);
+      updatedPlant.last = date;
+      const filtered = state.filter(p => p.id !== plantId);
 
+      return [...filtered, updatedPlant];
     default:
       return state;
   }
-}
+};
