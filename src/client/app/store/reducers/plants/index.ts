@@ -6,7 +6,6 @@ export interface PlantsState {
   [index: number]: Plant;
 }
 
-
 const initState: Plant[] = [
   {id: 'test1', name: 'testPlant', watterFrequency: 3},
   {id: 'test2', name: 'pathy', watterFrequency: 5},

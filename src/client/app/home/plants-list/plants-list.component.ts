@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import {
-  TableOptions,
-  TableColumn,
-  ColumnMode,
-} from 'angular2-data-table';
+import { ColumnConfig } from './table.component';
 import { Plant } from '../../model/Plant';
 import { AppState } from '../../store/reducers/index';
 import { PlantActions } from '../../store/actions/index';
@@ -15,31 +11,22 @@ import { PlantActions } from '../../store/actions/index';
   moduleId: module.id,
   selector: 'sd-plants-list',
   template: `
-    <datatable
-      class='material striped'
-      [rows]='plants | async'
-      [options]='options'>
-      <datatable-column name="">
-        <template let-row="row" let-value="value">
-          <button (click)="watering($event, value)" style="float: right">Water</button>
-        </template>
-      </datatable-column>
-    </datatable>
+    <sd-table [config]="tableConfig" [datas]="plants | async"></sd-table>
   `
 })
 export class PlantsListComponent {
 
-  options = new TableOptions({
-    columnMode: ColumnMode.force,
-    headerHeight: 50,
-    footerHeight: 50,
-    rowHeight: 'auto',
-    columns: [
-      new TableColumn({ name: 'Name', prop: 'name' }),
-      new TableColumn({ name: 'Frequency (per week)', prop: 'watterFrequency' }),
-      new TableColumn({ name: 'Last water', prop: 'last' }),
-    ]
-  });
+  tableConfig: ColumnConfig[] = [
+    {key: 'name', label: 'Name' },
+    {key: 'watterFrequency', label: 'Frequency (per week)' },
+    {key: 'last', label: 'Last water' },
+    {
+      key: 'action',
+      label: 'Water',
+      isButton: true,
+      onClick: ($e, value) => this.watering($e, value)
+    },
+  ];
 
   plants: Observable<Plant[]>;
 
