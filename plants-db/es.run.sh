@@ -1,0 +1,1 @@
+docker run -d -p 9200:9200 -v "$PWD/esdata":/usr/share/elasticsearch/data elasticsearch

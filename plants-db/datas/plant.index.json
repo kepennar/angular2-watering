@@ -1,0 +1,26 @@
+{
+  "plant": {
+    "properties": {
+      "symbol": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "synonymSymbol": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "scientificNameWithAuthor": {
+        "type": "string",
+        "index": "analyzed"
+      },
+      "commonName": {
+        "type": "string",
+        "index": "analyzed"
+      },
+      "family": {
+        "type": "string",
+        "index": "analyzed"
+      }
+    }
+  }
+}
