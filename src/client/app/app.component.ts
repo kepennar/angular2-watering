@@ -16,7 +16,6 @@ import { Config} from './shared/index';
     </div>
    `,
 })
-
 export class AppComponent {
   constructor() {
     console.log('Environment config', Config);

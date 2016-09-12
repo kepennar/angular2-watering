@@ -10,12 +10,12 @@ import { PlantActions } from '../../store/actions/index';
   moduleId: module.id,
   selector: 'sd-plant-form',
   template: `
-    <form (submit)="addPlant()">
+    <form (submit)="addPlant(newPlant)">
       <fieldset>
         <legend>Add your plant</legend>
         <label>
           Name:
-          <input [(ngModel)]="newPlant" name="newPlant" placeholder="Your plant name">
+          <input #newPlant [(ngModel)]="newPlant" name="newPlant" placeholder="Your plant name">
         </label>
         <label>
           Watering frequency (per week):
@@ -31,7 +31,6 @@ import { PlantActions } from '../../store/actions/index';
 })
 export class PlantFormComponent {
   watterFrequencies = [1, 2, 5, 10, 20];
-  newPlant: string = '';
   watterFrequency: number = 10;
 
   constructor(
@@ -39,14 +38,13 @@ export class PlantFormComponent {
     private plantActions: PlantActions
   ) {
   }
-  addPlant(): boolean {
-    const newPlant: Plant = {
+  addPlant(newPlant: string): boolean {
+    const plantToCreate: Plant = {
       id: v4(),
-      name: this.newPlant,
+      name: newPlant,
       watterFrequency: this.watterFrequency
     };
-    this.store.dispatch(this.plantActions.add(newPlant));
-    this.newPlant = '';
+    this.store.dispatch(this.plantActions.add(plantToCreate));
     return false;
   }
 
