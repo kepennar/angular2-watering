@@ -17,7 +17,7 @@ import { PlantActions } from '../../store/actions/index';
 export class PlantsListComponent {
 
   tableConfig: ColumnConfig[] = [
-    {key: 'name', label: 'Name' },
+    {key: 'name', label: 'fff'  },
     {key: 'watterFrequency', label: 'Frequency (per week)' },
     {key: 'last', label: 'Last water' },
     {
